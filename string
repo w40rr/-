@@ -1,0 +1,103 @@
+#include <iostream>
+#include <string>
+//12 variant
+
+//3
+//int main()
+//{
+// std::string Text;
+// int s = 0, R = 0, pos1, pos2 = 1,lenT, m, y, v, t, j = 1;
+// std::cout << "Kol-vo simvolov v slove: ";
+// std::cin >> v; // кол-во букв в слове
+// Text = "It was raining, but the day was still very beautiful, Spread eagle.";
+// lenT = Text.length();
+
+// t = Text.find(".", 0);
+// y = Text.find(" ", 0);
+
+// for(int i = 0; i < lenT; i++){
+// j = Text.find(",", 0);
+// Text.erase(j, 1);
+// if ( j < std::string::npos) break;
+// }
+// if (y == v){
+// R++;
+// } // Первое слово
+// for(int i = 0; i < lenT; i++){
+// pos1 = Text.find(" ", s);
+// pos2 = Text.find(" ", pos1 + 1);
+// if(pos2 == std::string::npos) {
+// pos2 = pos1 ;
+// break;
+// }
+// m = pos2 - pos1 - 1;
+// s = pos1 + 1;
+// if(m == v){
+// R++;
+// }
+
+// }
+// if ((lenT - pos2 - 3) == v){
+// R++;
+// } // Последнее слово
+// std::cout << R << std::endl;
+//}
+
+//16
+//int main()
+//{
+// std::string Text, Numbers;
+// int lenT, R ;
+// Text = "There are 4 books on the desk. I’m 25 years old.";
+// Numbers = "1234567890";
+// lenT = Text.length();
+// for(int i = 0; i < lenT; i++){
+// for (int c = 0; c < 10; c++){
+// if(Text[i] == Numbers[c]){
+// R++;
+// }
+// }
+// }
+// std::cout << "chislo chisel v texte: " << R << std::endl;
+//}
+
+//21
+int main() {
+int cifra1, cifra2, cifra3, cifra4;
+
+std::string A = "I 1 the 2 3 4.";
+std::string B = "am";
+std::string C = "one";
+std::string D = "who";
+std::string F = "knocks";
+
+A.resize( 70, ' ' );
+
+cifra1 = A.find("1");
+A.replace(cifra1, 1, B);
+
+cifra2 = A.find("2");
+A.replace(cifra2, 1, C);
+
+cifra3 = A.find("3");
+A.replace(cifra3, 1, D);
+
+cifra4 = A.find("4");
+A.replace(cifra4, 1, F);
+
+std::cout << A << std::endl;
+}
+
+//12
+//int main(){
+//std::string text="true true true true true true true true true true true true";
+//std::string tru3="true";
+//std::string f0lse="false";
+//int pos=text.find(tru3);
+//while(pos!=std::string::npos){
+//text.replace(pos,4,f0lse);
+//pos=text.find(tru3);
+//}
+//std::cout << text;
+//return 0;
+//}
