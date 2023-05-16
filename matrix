@@ -1,0 +1,100 @@
+variant 12
+#include <iostream>
+
+//3
+int main() {
+    const int N = 3; 
+    int A[N][N];
+    int sum = 0; 
+    
+    srand(time(0));
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            A[i][j] = rand() % 21 - 10;
+        }
+    }
+
+    std::cout << "Matrix A:\n";
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            std::cout << A[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    for (int i = 0; i < N; i++) {
+        if (A[i][i] < 0) {
+            sum += A[i][i];
+        }
+    }
+
+    std::cout << "summa otricatelnix elementov na glavnoi diagonale: " << sum << std::endl;
+
+    return 0;
+}
+
+#include <iostream>
+
+//5
+int main() {
+  const int n = 4;  
+  int arr[n][n] = {{100, 100, 100, 1}, {100, 100, 100, 1}, {100, 1, 100, 100}, {100, 1, 100, 100}}; 
+  
+  std::cout << "matrix:" << std::endl;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      std::cout << arr[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
+  
+  for (int i = 0; i < n; i++) {
+    int min_index = i;  
+    for (int j = 0; j < n; j++) {
+      if (arr[i][j] < arr[i][min_index]) {
+        min_index = j;
+      }
+    }
+    if (min_index != i) {  
+      std::swap(arr[i][min_index], arr[i][i]);
+    }
+  }
+  
+  std::cout << "new matrix:" << std::endl;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      std::cout << arr[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
+  
+  return 0;
+}
+
+#include <iostream>
+
+//8
+int main() {
+    const int q = 2; 
+    const int w = 4; 
+
+    int matrix[q][w] = {{120, 180, 200, 150}, {1, 2, 3, 3}};
+
+    int max_power = 0;
+    int max_power_index = -1;
+
+    for (int i = 0; i < w; i++) {
+        if (matrix[1][i] == 3 && matrix[0][i] > max_power) {
+            max_power = matrix[0][i];
+            max_power_index = i;
+        }
+    }
+
+    if (max_power_index == -1) {
+        std::cout << "nety motora 3 kategorii" << std::endl;
+    } else {
+        std::cout << "samiy moshniy motor 3 kategorii: " << max_power << "Bt" << std::endl;
+    }
+
+    return 0;
+}
