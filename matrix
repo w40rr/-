@@ -2,6 +2,8 @@ variant 12
 #include <iostream>
 
 //3
+//В квадратной матрице, найти сумму отрицательных элементов, лежащих на главной
+//диагонали.
 int main() {
     const int N = 3; 
     int A[N][N];
@@ -36,6 +38,8 @@ int main() {
 #include <iostream>
 
 //5
+//В квадратной матрице для каждой строки найти минимальный элемент и
+//переставить его с элементом, стоящим в этой строке на главной диагонали.
 int main() {
   const int n = 4;  
   int arr[n][n] = {{100, 100, 100, 1}, {100, 100, 100, 1}, {100, 1, 100, 100}, {100, 1, 100, 100}}; 
@@ -74,6 +78,8 @@ int main() {
 #include <iostream>
 
 //8
+//Дана матрица. Элементы первой строки — мощность электромотора, второй строки
+//— категория мотора (число от 1 до 3). Найти самый мощный мотор категории 3.
 int main() {
     const int q = 2; 
     const int w = 4; 
@@ -102,6 +108,10 @@ int main() {
 #include <iostream>
 
 //9b
+/*Объявить, реализовать заполнение данными с клавиатуры ИЛИ из файла и вывести
+на экран матрицу, описывающую следующие сущности. Предложите свой вариант.
+b. Состояние робота на шахматной доске. Робот характеризуется уровнем
+заряда, скоростью движения*/
 int main() {
     const int q = 8;
     const int w = 8;
@@ -128,3 +138,61 @@ int main() {
     return 0;
 }
 
+#include <iostream>
+#include <cmath>
+
+//10.6
+/*Дана матрица. Составить массив, каждый элемент которого равен максимальному
+элементу соответствующей строки матрица.Реализовать вычисление матричных норм*/
+using namespace std;
+
+const int q = 3;
+const int w = 3;
+
+void maxInRow(int arr[][w], int result[]) {
+    for (int i = 0; i < q; i++) {
+        int max = arr[i][0];
+        for (int j = 1; j < w; j++) {
+            if (arr[i][j] > max) {
+                max = arr[i][j];
+            }
+        }
+        result[i] = max;
+    }
+}
+
+int maxNorm(int arr[][w]) {
+    int result[q];
+    maxInRow(arr, result);
+    int max = result[0];
+    for (int i = 1; i < q; i++) {
+        if (result[i] > max) {
+            max = result[i];
+        }
+    }
+    return max;
+}
+
+int frobeniusNorm(int arr[][w]) {
+    int sum = 0;
+    for (int i = 0; i < q; i++) {
+        for (int j = 0; j < w; j++) {
+            sum += arr[i][j] * arr[i][j];
+        }
+    }
+    return sqrt(sum);
+}
+
+int main() {
+    int matrix[q][w] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int result[q];
+    maxInRow(matrix, result);
+    cout << "Max in each row: ";
+    for (int i = 0; i < q; i++) {
+        cout << result[i] << " ";
+    }
+    cout << endl;
+    cout << "Max norm: " << maxNorm(matrix) << endl;
+    cout << "Frobenius norm: " << frobeniusNorm(matrix) << endl;
+    return 0;
+}
