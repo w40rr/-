@@ -1,0 +1,101 @@
+variant 12
+
+#include <iostream>
+
+/*1
+Объявить указатели на две переменные указанного типа. Используя указатели
+произвести операции сложения и вычитания над переменными. Вывести адреса
+указателей. Типы переменных указаны в таблице.short*/
+int main() {
+    short a = 10, b = 5;
+    short *ptr_a = &a;
+    short *ptr_b = &b;
+
+    std::cout << "Address of ptr_a: " << &ptr_a << std::endl;
+    std::cout << "Address of ptr_b: " << &ptr_b << std::endl;
+
+    std::cout << "Sum: " << *ptr_a + *ptr_b << std::endl;
+    std::cout << "Difference: " << *ptr_a - *ptr_b << std::endl;
+
+    return 0;
+}
+
+#include <iostream>
+
+/*2 
+Написать функцию для обмена значений переменных, указанных выше. Передача по
+указателю. Выполнить программу по шагам и выписать в тетрадь адреса указателей
+и величины переменных.
+short*/
+void swap(short *ptr_a, short *ptr_b) {
+    short temp = *ptr_a;
+    *ptr_a = *ptr_b;
+    *ptr_b = temp;
+}
+
+int main() {
+    short a = 10, b = 5;
+    short *ptr_a = &a;
+    short *ptr_b = &b;
+
+    std::cout << "Address of ptr_a: " << &ptr_a << std::endl;
+    std::cout << "Address of ptr_b: " << &ptr_b << std::endl;
+
+    std::cout << "Value of a: " << a << std::endl;
+    std::cout << "Value of b: " << b << std::endl;
+
+    swap(ptr_a, ptr_b);
+
+    std::cout << "Value of a: " << a << std::endl;
+    std::cout << "Value of b: " << b << std::endl;
+
+    return 0;
+}
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+/*4
+Объявить сущность и описать её свойства. Объявить динамический массив
+сущностей. Реализовать функцию, которая изменяет значения элемента (структура)
+массива. Заполнить атрибуты числовыми и текстовыми значениями (диапазон
+значений определить самостоятельно).фрукт*/
+using namespace std;
+
+struct Fruit {
+    string shape;
+    string skinColor;
+    string taste;
+    string texture;
+};
+
+void changeSkinColor(Fruit* fruit, string newColor) {
+    fruit->skinColor = newColor;
+}
+
+int main() {
+    srand(time(0)); 
+    Fruit* fruits = new Fruit[5];
+    string shapes[] = {"округлая", "вытянутая"};
+    string skinColors[] = {"зеленый", "желтый", "красный"};
+    string tastes[] = {"сладкий", "кислый"};
+    string textures[] = {"сочная", "хрустящая"};
+    for (int i = 0; i < 5; i++) {
+        fruits[i].shape = shapes[rand() % 2];
+        fruits[i].skinColor = skinColors[rand() % 3];
+        fruits[i].taste = tastes[rand() % 2];
+        fruits[i].texture = textures[rand() % 2];
+    }
+    for (int i = 0; i < 5; i++) {
+        cout << "Фрукт " << i+1 << ": форма - " << fruits[i].shape
+             << ", цвет кожуры - " << fruits[i].skinColor
+             << ", вкус - " << fruits[i].taste
+             << ", текстура мякоти - " << fruits[i].texture << endl;
+    }
+    changeSkinColor(&fruits[2], "фиолетовый");
+    cout << "Цвет кожуры третьего фрукта изменен на фиолетовый." << endl;
+    delete[] fruits;
+    return 0;
+}
