@@ -1,0 +1,100 @@
+variant 12
+#include <iostream>
+#include <fstream>
+
+//1c
+using namespace std;
+
+int main() {
+    ifstream inFile("sevgu2.png", ios::binary);
+    
+    char signature[8];
+    inFile.read(signature, 8);
+    cout << "PNG signature: ";
+    for (int i = 0; i < 8; i++) {
+        cout << hex << (int)signature[i];
+    }
+    cout << endl;
+        char ihdr[25];
+    inFile.seekg(12); 
+    inFile.read(ihdr, 25);
+    cout << "IHDR Chunk: ";
+    for (int i = 0; i < 25; i++) {
+        cout << hex << (int)ihdr[i];
+    }
+    cout << endl;
+    
+    inFile.close();
+    
+    return 0;
+}
+
+#include <iostream>
+#include <fstream>
+#include <cmath>
+
+//3b
+using namespace std;
+
+double func(double x, double c) {
+    double y = 0;
+    for (int i = 1; i <= c; i++) {
+        y += 1 / (i * x);
+    }
+    return y;
+}
+
+int main() {
+    double x0, xf, h, c;
+    ifstream fin("in.txt");
+    fin >> x0 >> xf >> h >> c;
+    fin.close();
+    ofstream fout("out.txt");
+    for (double x = x0; x <= xf; x += h) {
+        fout << x << ", " << func(x, c) << endl;
+    }
+    fout.close();
+    return 0;
+}
+
+#include <iostream>
+#include <fstream>
+
+//7
+using namespace std;
+
+int main() {
+    double x, y;
+    int command;
+
+    ofstream file;
+    file.open("flight_data.txt", ios_base::app);
+
+    cout << "Введите координаты и команду (взлёт - 10, посадка - 20, полёт - 50, набрать высоту - 60, снизить высоту - 70):" << endl;
+
+    cin >> x >> y >> command;
+
+    if (command == 10) {
+        file << x << "," << y << ",ВЗЛЕТ" << endl;
+    }
+    else if (command == 20) {
+        file << x << "," << y << ",ПОСАДКА" << endl;
+    }
+    else if (command == 50) {
+        file << x << "," << y << ",ПОЛЁТ" << endl;
+    }
+    else if (command == 60) {
+        file << x << "," << y << ",НАБРАТЬ ВЫСОТУ" << endl;
+    }
+    else if (command == 70) {
+        file << x << "," << y << ",СНИЗИТЬ ВЫСОТУ" << endl;
+    }
+    else {
+        cout << "Неверная команда. Попробуйте ещё раз." << endl;
+        return 0;
+    }
+
+    file.close();
+
+    return 0;
+}
